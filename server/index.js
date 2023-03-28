@@ -11,8 +11,9 @@ const issueTypeRouter = require('./routes/issuetype-router');
 const avatarFileUploadRouter = require('./routes/user-avatar-router');
 const priorityRouter = require('./routes/priority-router');
 const kanbanTypeRouter = require('./routes/kanbantype-router');
+const { port } = require('./config');
 const app = express();
-const apiPort = 1400;
+
 
 app.use(cors());
 app.use(express.json());
@@ -38,7 +39,7 @@ app.use('/api', [
   kanbanTypeRouter,
 ]);
 
-app.listen(apiPort, function (err) {
+app.listen(port, function (err) {
   if (err) console.log(err);
-  console.log('Server listening on port: ', apiPort);
+  console.log('Server listening on port: ', port);
 });

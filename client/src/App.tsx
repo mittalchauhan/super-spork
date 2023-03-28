@@ -63,7 +63,7 @@ const App = () => {
             element={
               <PrivateRoute>
                 <Home />
-              </PrivateRoute>
+               </PrivateRoute>
             }
           />
           <Route

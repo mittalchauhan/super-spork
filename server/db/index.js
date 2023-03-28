@@ -1,7 +1,8 @@
 const mongoose = require('mongoose');
+const { mongo_url } = require('../config');
 
 mongoose
-    .connect('mongodb+srv://saritadpandey2016:sarita123@cluster0.lbybxew.mongodb.net/test', { useNewUrlParser: true, useUnifiedTopology: true, })
+    .connect(mongo_url, { useNewUrlParser: true, useUnifiedTopology: true, })
     .catch(e => {
         console.error('Connection error', e.message);
     });
