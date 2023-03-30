@@ -12,3 +12,8 @@ const Priority = new Schema(
 );
 
 module.exports = mongoose.model("priorities", Priority);
+// [
+//   {label:"P1"},
+//   {label:"P2"},
+//   {label:"P3"},
+// ]

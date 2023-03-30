@@ -11,3 +11,11 @@ const KanbanTypes = new Schema(
 );
 
 module.exports = mongoose.model("kanbantypes", KanbanTypes);
+
+// [
+//   {label:"New", className:"kanbanflow"},
+//   {label:"In Progress", className:"kanbanflow"},
+//   {label:"Testing", className:"kanbanflow"},
+//   {label:"Completed", className:"kanbanflow"}
+  
+// ]

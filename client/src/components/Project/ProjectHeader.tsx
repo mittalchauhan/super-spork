@@ -6,6 +6,8 @@ import {
 } from "../../utils/API/project_API";
 import { routes } from "../../utils/routes";
 import { useNavigate } from "react-router-dom";
+import Logo from "../../Image/logo.png";
+
 
 export interface ProjectHeaderProps {
   project: Project;
@@ -29,8 +31,10 @@ const ProjectHeader: React.FC<ProjectHeaderProps> = (props) => {
         onConfirm={deleteProject}
       />
       <div className="project-header">
-        <div className="left">
-          <h1>Kanban Board</h1>
+        <div className="left" style={{display:"flex"}}>
+        <img   src={Logo} width={75} height={80}/>
+          <h1>  Kanban Board</h1>
+        
         </div>
         <div className="right">
           <Icon name="star" color="yellow" />

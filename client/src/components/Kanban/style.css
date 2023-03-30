@@ -33,7 +33,7 @@
 }
 
 .drag-column h2 {
-    color: rgb(255, 255, 255);
+    color: rgb(59, 28, 198);
     font-size: 1rem;
     margin: 0;
     text-transform: uppercase;
@@ -141,4 +141,8 @@
 
 .drag-header-more {
     cursor: pointer;
+}
+
+.kanbanflow{
+    background-color: red;
 }

@@ -17,7 +17,7 @@ const Home: React.FC<HomeProps> = (props) => {
         <b>Hey there,</b> {currentUser.firstname}
         <p>You are logged in!</p>
       </h4>
-      <AvatarUpload />
+      {/* <AvatarUpload /> */}
     </Main>
   );
 };
