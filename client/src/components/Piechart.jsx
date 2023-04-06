@@ -38,7 +38,7 @@ export default function Pie1(){
             cy="50%"
             labelLine={false}
             label={renderCustomizedLabel}
-            outerRadius={150}
+            outerRadius={140}
             fill="#8884d8"
             dataKey="value"
           >

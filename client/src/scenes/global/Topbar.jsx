@@ -7,7 +7,7 @@ const Topbar = () => {
   return (
     <Box display="flex" justifyContent="space-between" p={2}>
       {/*search bar */}
-      <Box display="flex" borderRadius="3px"  className="icon2">
+      <Box display="flex" borderRadius="3px"  className="iconsearch">
         <InputBase sx={{ ml: 2, flex: 1 }} placeholder="Search" />
         <IconButton type="button" sx={{ p: 1 }}>
           <SearchIcon />

@@ -9,8 +9,10 @@ const Main: React.FC<MainProps> = (props) => {
   const { children } = props;
   return (
     <>
+      
       <FixedMenu />
       <Container className="main-container">{children}</Container>
+     
     </>
   );
 };

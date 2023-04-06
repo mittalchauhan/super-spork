@@ -5,7 +5,7 @@ const Header=({title,subtitle})=>{
         <Typography variant="h2" color="green" fontWeight="bold" sx={{mb:"5px"}}>
             {title}
         </Typography>
-        <Typography variant="h5" color="white" >
+        <Typography variant="h5" color="blue" >
          {subtitle}
         </Typography>
     </Box>
