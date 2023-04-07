@@ -6,9 +6,11 @@ import { Box } from "@mui/material";
 import Topbar from "../scenes/global/Topbar";
 
 const People = () => {
-  return <Main>
-    <div className="people_row1">
-    <Box mb="20px">
+  return < Main>
+  
+    <div className="datagrid_main">
+      <div className="people_row1">
+          <Box mb="20px">
             <Box
               display="flex"
               justifyContent="space-between"
@@ -17,15 +19,19 @@ const People = () => {
               <Header title="Employees" subtitle=" Looking for project team details" />
             </Box>
           </Box>
-       <Box>
-        <Topbar />
-       </Box>
-       </div>
-
-      <div className="m">
-      <Datagrid />
+          <Box>
+              <Topbar />
+          </Box>
       </div>
-  </Main>;
+
+        <div className="datagrid">
+          <Box>
+          <Datagrid />
+          </Box>
+        </div>
+      </div>
+      </Main>;
+  
 };
 
 export default People;

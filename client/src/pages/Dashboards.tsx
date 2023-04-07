@@ -9,7 +9,7 @@ import Line1 from "../components/Linechart";
 
 const Dashboards = () => {
   return (
-    <Main>
+    < >
     <>
       <div className="dashboard">
         <div className="dashboard_row1">
@@ -30,7 +30,7 @@ const Dashboards = () => {
 
         <div className="pie_bar_row">
            <div className="piechart">
-          <Box height="100px" sx={{ mr: "500px" }}>
+          <Box height="100px" sx={{ mr: "700px" }}>
             <Pie1 />
             <br></br>
             <h5 className="usera">Developer</h5>
@@ -44,7 +44,7 @@ const Dashboards = () => {
           </div>
           <Box>
             <div className="barchart">
-              <Box sx={{ ml: "420px" }}>
+              <Box sx={{ ml: "440px" }}>
                 <Bar1 />
               </Box>
             </div>
@@ -55,7 +55,7 @@ const Dashboards = () => {
         </Box>
       </div>
     </>
-    </Main>
+    </>
   );
 };
 

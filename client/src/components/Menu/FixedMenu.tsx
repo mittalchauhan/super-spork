@@ -3,6 +3,7 @@ import { Dropdown, Menu, Button } from "semantic-ui-react";
 import { routes } from "../../utils/routes";
 import { Link, useLocation } from "react-router-dom";
 import CreateProjectModal from "../Project/CreateModal";
+import CreatePeopleModal from "../Project/CreatePeople";
 import CreateIssueModal from "../Issue/CreateModal";
 import { connect } from "react-redux";
 import { AppState } from "../../redux";
@@ -18,6 +19,7 @@ const FixedMenu: React.FC<FixedMenuProps> = (props) => {
   const location = useLocation();
   const { pathname } = location;
 
+  const [isPeopleOpen, setPeopleOpen] = useState(false);
   const [isProjectOpen, setProjectOpen] = useState(false);
   const [isIssueOpen, setIssueOpen] = useState(false);
 
@@ -26,6 +28,12 @@ const FixedMenu: React.FC<FixedMenuProps> = (props) => {
       <CreateProjectModal
         isOpen={isProjectOpen}
         handleClose={() => setProjectOpen(false)}
+        currentUser={currentUser}
+      />
+
+     <CreatePeopleModal
+        isOpen={isPeopleOpen}
+        handleClose={() => setPeopleOpen(false)}
         currentUser={currentUser}
       />
       {isIssueOpen && (
@@ -72,13 +80,27 @@ const FixedMenu: React.FC<FixedMenuProps> = (props) => {
         >
           Dashboards
         </Menu.Item>
-        <Menu.Item
+        {/* <Menu.Item
           as={Link}
           to={routes["PEOPLE"]}
           active={pathname === routes["PEOPLE"]}
         >
           People
-        </Menu.Item>
+        </Menu.Item> */}
+
+<Dropdown item text="People">
+          <Dropdown.Menu>
+            <Dropdown.Item onClick={() => setPeopleOpen(!isPeopleOpen)}>
+              Create People
+            </Dropdown.Item>
+            <Dropdown.Item 
+          as={Link}
+          to={routes["PEOPLE"]}
+          active={pathname === routes["PEOPLE"]}>
+            People
+            </Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown>
 
         <Button
           color="blue"
