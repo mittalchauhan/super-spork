@@ -63,9 +63,9 @@ const FixedMenu: React.FC<FixedMenuProps> = (props) => {
             >
               View all projects
             </Dropdown.Item>
-            <Dropdown item text=" create People">
+            <Dropdown item text=" create Project">
             <Dropdown.Item onClick={() => setProjectOpen(!isProjectOpen)}>
-              CreatePeople
+              CreateProject
             </Dropdown.Item>
             </Dropdown>
           </Dropdown.Menu>

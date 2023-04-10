@@ -176,7 +176,7 @@ html,
 .people_row1 {
   display: flex;
   position: relative;
-  height: 180px;
+  height: 140px;
   margin-left: 120px;
   
 }
@@ -207,3 +207,15 @@ html,
   margin-left: 20px;
   height: 150px;
 }
+.form1{
+  margin-left:600px;
+}
+.form2{
+  margin-left:300px;
+  
+}
+.form3{
+margin-left:100px;
+}
+
+
