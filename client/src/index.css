@@ -185,3 +185,25 @@ html,
 
  height: 1000%;
 }
+
+.yourwork2{
+  margin-left: 600px;
+}
+
+.yourwork1{
+  background-color:lemonchiffon;
+  width: 1100px;
+  height: 320px;
+  margin-left: 10px;
+}
+
+.yourwork{
+  background-color:whitesmoke;
+  margin-top: 100px;
+
+  box-shadow:1.5px 1.5px 1px lightblue inset;
+}
+.yourwork3{
+  margin-left: 20px;
+  height: 150px;
+}

@@ -18,6 +18,7 @@ import People from "./pages/People";
 import { getUsers, User, getUserByMail } from "./utils/API/user_API";
 import Project from "./pages/Project";
 
+
 const store = configureStore();
 
 /**

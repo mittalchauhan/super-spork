@@ -4,6 +4,7 @@ import Datagrid from "../components/Datagrid"
 import Header from "../components/Header_People"
 import { Box } from "@mui/material";
 import Topbar from "../scenes/global/Topbar";
+import CreatePeople from "../components/People/CreatePeople";
 
 const People = () => {
   return < Main>
@@ -30,6 +31,9 @@ const People = () => {
           </Box>
         </div>
       </div>
+      <Box>
+        <CreatePeople />
+      </Box>
       </Main>;
   
 };

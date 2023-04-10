@@ -3,7 +3,6 @@ import { Dropdown, Menu, Button } from "semantic-ui-react";
 import { routes } from "../../utils/routes";
 import { Link, useLocation } from "react-router-dom";
 import CreateProjectModal from "../Project/CreateModal";
-import CreatePeopleModal from "../Project/CreatePeople";
 import CreateIssueModal from "../Issue/CreateModal";
 import { connect } from "react-redux";
 import { AppState } from "../../redux";
@@ -31,11 +30,7 @@ const FixedMenu: React.FC<FixedMenuProps> = (props) => {
         currentUser={currentUser}
       />
 
-     <CreatePeopleModal
-        isOpen={isPeopleOpen}
-        handleClose={() => setPeopleOpen(false)}
-        currentUser={currentUser}
-      />
+      
       {isIssueOpen && (
         <CreateIssueModal
           isOpen={isIssueOpen}
@@ -68,9 +63,11 @@ const FixedMenu: React.FC<FixedMenuProps> = (props) => {
             >
               View all projects
             </Dropdown.Item>
+            <Dropdown item text=" create People">
             <Dropdown.Item onClick={() => setProjectOpen(!isProjectOpen)}>
-              Create project
+              CreatePeople
             </Dropdown.Item>
+            </Dropdown>
           </Dropdown.Menu>
         </Dropdown>
         <Menu.Item
@@ -80,28 +77,15 @@ const FixedMenu: React.FC<FixedMenuProps> = (props) => {
         >
           Dashboards
         </Menu.Item>
-        {/* <Menu.Item
+        <Menu.Item
           as={Link}
           to={routes["PEOPLE"]}
           active={pathname === routes["PEOPLE"]}
         >
           People
-        </Menu.Item> */}
+        </Menu.Item>
 
-<Dropdown item text="People">
-          <Dropdown.Menu>
-            <Dropdown.Item onClick={() => setPeopleOpen(!isPeopleOpen)}>
-              Create People
-            </Dropdown.Item>
-            <Dropdown.Item 
-          as={Link}
-          to={routes["PEOPLE"]}
-          active={pathname === routes["PEOPLE"]}>
-            People
-            </Dropdown.Item>
-          </Dropdown.Menu>
-        </Dropdown>
-
+       
         <Button
           color="blue"
           size="medium"
