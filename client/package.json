@@ -29,6 +29,7 @@
     "jwt-decode": "^3.1.2",
     "moment": "^2.29.1",
     "mongoose": "^7.0.3",
+    "primeicons": "^6.0.1",
     "primereact": "^9.3.0",
     "react": "^17.0.2",
     "react-beautiful-dnd": "^13.1.0",

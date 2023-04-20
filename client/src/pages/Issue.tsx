@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Button } from "primereact/button";
 
 import Grid from "../components/Issue/Grid";
@@ -6,6 +6,8 @@ import Main from "../components/Main/Main";
 
 import CreateIssueModal from "../components/Issue/CreateModal";
 import { getIssues } from "../utils/API/issue_API";
+import { Toast } from "primereact/toast";
+import { selectClasses } from "@mui/material";
 
 function Issue(props) {
   const { currentUser } = props;
@@ -13,6 +15,7 @@ function Issue(props) {
   const [totalRecords, setTotalRecords] = useState(0);
   const [issues, setIssues] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [selectedIssue, setSelectedIssue] = useState([]);
   const issueColumns = [
     { field: "description", header: "Description", type: "string" },
     { field: "projectId.name", header: "Project", type: "string" },
@@ -21,6 +24,25 @@ function Issue(props) {
     { field: "priorityId.label", header: "Priority", type: "string" },
     { field: "createdat", header: "Created on", type: "date" },
   ];
+  const toast = useRef(null);
+  const onselectionchange = (e) => {
+    setSelectedIssue(e.value);
+  };
+
+  const displayWarning = (message) => {
+    toast.current.show({
+      severity: "warn",
+      summary: "Warning",
+      detail: message,
+      life: 3000,
+    });
+  };
+  const deleteIssue = () => {
+    if (selectedIssue.length === 0) {
+      displayWarning("No Issue Selected");
+    } else {
+    }
+  };
 
   useEffect(() => {
     getIssues().then((data) => {
@@ -32,6 +54,7 @@ function Issue(props) {
 
   return (
     <Main>
+      <Toast ref={toast} position="top-right"></Toast>
       {isIssueOpen && (
         <CreateIssueModal
           isOpen={isIssueOpen}
@@ -44,8 +67,16 @@ function Issue(props) {
           <div className="col-md-4">
             <h1>Issues</h1>
           </div>
-          <div className="offset-6 col-2">
+          <div className="offset-4 col-2">
             <Button
+              className="btn btn-danger"
+              label="Delete issue"
+              onClick={() => deleteIssue()}
+            />
+          </div>
+          <div className=" col-2">
+            <Button
+              className="btn btn-primary"
               label="create new issue"
               onClick={() => setIssueOpen(true)}
             />
@@ -57,6 +88,9 @@ function Issue(props) {
         data={issues}
         isLoading={loading}
         columns={issueColumns}
+        dataKey={"_id"}
+        onSelectionChange={onselectionchange}
+        selecteditems={selectedIssue}
       />
     </Main>
   );
