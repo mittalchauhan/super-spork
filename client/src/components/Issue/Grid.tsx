@@ -9,8 +9,8 @@ export default function Grid(props) {
     total,
     isLoading,
     dataKey = "_id",
-    onSelectionChange,
-    selecteditems,
+    onSelectionChange = () => {},
+    selecteditems = [],
   } = props;
 
   const dateTemplate = (rowData, column) => {
