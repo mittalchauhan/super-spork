@@ -8,6 +8,7 @@ import { connect } from "react-redux";
 import { AppState } from "../../redux";
 import { User } from "../../utils/API/user_API";
 import { logoutUser } from "../../redux/auth/actions";
+import "./styles.css";
 
 export interface FixedMenuProps {
   currentUser?: User;
@@ -30,7 +31,6 @@ const FixedMenu: React.FC<FixedMenuProps> = (props) => {
         currentUser={currentUser}
       />
 
-      
       {isIssueOpen && (
         <CreateIssueModal
           isOpen={isIssueOpen}
@@ -64,9 +64,12 @@ const FixedMenu: React.FC<FixedMenuProps> = (props) => {
               View all projects
             </Dropdown.Item>
             <Dropdown item text=" create Project">
-            <Dropdown.Item onClick={() => setProjectOpen(!isProjectOpen)}>
-              CreateProject
-            </Dropdown.Item>
+              <Dropdown.Item
+                className="sub-menu-li"
+                onClick={() => setProjectOpen(!isProjectOpen)}
+              >
+                CreateProject
+              </Dropdown.Item>
             </Dropdown>
           </Dropdown.Menu>
         </Dropdown>
@@ -84,7 +87,7 @@ const FixedMenu: React.FC<FixedMenuProps> = (props) => {
         >
           People
         </Menu.Item>
-        
+
         <Menu.Item
           as={Link}
           to={routes["ISSUE"]}
@@ -93,7 +96,6 @@ const FixedMenu: React.FC<FixedMenuProps> = (props) => {
           Issue
         </Menu.Item>
 
-       
         {/* <Button
           color="blue"
           size="medium"

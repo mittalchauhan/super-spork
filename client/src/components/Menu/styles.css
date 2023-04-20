@@ -1,0 +1,6 @@
+.sub-menu-li{
+    color: blue !important;
+}
+.sub-menu-li:hover{
+    color: blueviolet !important;
+}
