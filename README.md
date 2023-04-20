@@ -8,3 +8,4 @@
 ## Install frontend
 1. npm install or yarn install
 2. npm start or yarn start
+3. update .env.sample to .env
