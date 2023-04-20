@@ -5,7 +5,7 @@ import Grid from "../components/Issue/Grid";
 import Main from "../components/Main/Main";
 
 import CreateIssueModal from "../components/Issue/CreateModal";
-import { getIssues } from "../utils/API/issue_API";
+import { getIssues, deleteIssue } from "../utils/API/issue_API";
 import { Toast } from "primereact/toast";
 import { selectClasses } from "@mui/material";
 
@@ -37,10 +37,24 @@ function Issue(props) {
       life: 3000,
     });
   };
-  const deleteIssue = () => {
+  const displaySuccess = (message) => {
+    toast.current.show({
+      severity: "success",
+      summary: "Successfully Done",
+      detail: message,
+      life: 3000,
+    });
+  };
+  const deleteSelectedIssue = () => {
     if (selectedIssue.length === 0) {
       displayWarning("No Issue Selected");
+    }
+    if (selectedIssue.length > 1) {
+      displayWarning("only one  Issue can be deleted at a ime");
     } else {
+      deleteIssue(selectedIssue[0]._id).then((data) => {
+        displaySuccess(`Record ${selectedIssue[0].label} deleted successfully`);
+      });
     }
   };
 
@@ -71,7 +85,7 @@ function Issue(props) {
             <Button
               className="btn btn-danger"
               label="Delete issue"
-              onClick={() => deleteIssue()}
+              onClick={() => deleteSelectedIssue()}
             />
           </div>
           <div className=" col-2">
