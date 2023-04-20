@@ -39,12 +39,17 @@ function Issue(props) {
           currentUser={currentUser}
         />
       )}
-      <div className="grid">
-        <div className="col-md-4">
-          <h1>Issues</h1>
-        </div>
-        <div className="md-offset-6 col-md-2">
-          <Button label="create new issue" onClick={() => setIssueOpen(true)} />
+      <div className="container">
+        <div className="row">
+          <div className="col-md-4">
+            <h1>Issues</h1>
+          </div>
+          <div className="offset-6 col-2">
+            <Button
+              label="create new issue"
+              onClick={() => setIssueOpen(true)}
+            />
+          </div>
         </div>
       </div>
       <Grid

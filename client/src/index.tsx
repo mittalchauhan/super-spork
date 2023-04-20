@@ -10,6 +10,9 @@ import "primereact/resources/themes/lara-light-indigo/theme.css";
 //core
 import "primereact/resources/primereact.min.css";
 
+//boostrap
+import "bootstrap/dist/css/bootstrap.min.css";
+
 ReactDOM.render(
   <React.StrictMode>
     <App />
