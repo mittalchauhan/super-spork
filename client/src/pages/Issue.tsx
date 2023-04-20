@@ -8,6 +8,8 @@ import CreateIssueModal from "../components/Issue/CreateModal";
 import { getIssues, deleteIssue } from "../utils/API/issue_API";
 import { Toast } from "primereact/toast";
 import { selectClasses } from "@mui/material";
+import { AppState } from "../redux";
+import { connect } from "react-redux";
 
 function Issue(props) {
   const { currentUser } = props;
@@ -110,4 +112,8 @@ function Issue(props) {
   );
 }
 
-export default Issue;
+const mapStateToProps = (state: AppState) => ({
+  currentUser: state.auth.user,
+});
+
+export default connect(mapStateToProps)(Issue);
