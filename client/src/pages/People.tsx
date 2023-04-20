@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Main from "../components/Main/Main";
 // import Grid from '../People/gridq'
 // import Datagrid from "../components/Datagrid";
@@ -7,7 +7,9 @@ import Main from "../components/Main/Main";
 // import Topbar from "../scenes/global/Topbar";
 // import CreatePe from "../components/People/peoplecreate_con";
 import Grid from '../people/grid';
-import { getUsers } from "../utils/API/user_API";
+import { getUsers, deleteUser } from "../utils/API/user_API";
+import { Button } from "primereact/button";
+import { Toast } from "primereact/toast";
 
 
 // const People = () => {
@@ -60,7 +62,7 @@ function People(props) {
       sortOrder: null,
     
   });
-
+  const [selectedUser, setSelectedUser] = useState([]);
   const usersColumns=[
     { field: "firstname", header: "Firstname", type: "string" },
     { field: "lastname", header: "Lastname", type: "string" },
@@ -68,7 +70,42 @@ function People(props) {
     { field: "role", header: "Role", type: "string" },
     { field: "status", header: "Status", type: "string" },
   ]
+  const toast = useRef(null);
+  const onselectionchange = (e) => {
+    setSelectedUser(e.value);
+  };
 
+
+  
+  const displayWarning = (message) => {
+    toast.current.show({
+      severity: "warn",
+      summary: "Warning",
+      detail: message,
+      life: 3000,
+    });
+  };
+  const displaySuccess = (message) => {
+    toast.current.show({
+      severity: "success",
+      summary: "Successfully Done",
+      detail: message,
+      life: 3000,
+    });
+  };
+
+  const deleteSelectedUser = () => {
+    if (selectedUser.length === 0) {
+      displayWarning("No Issue Selected");
+    }
+    if (selectedUser.length > 1) {
+      displayWarning("only one  Issue can be deleted at a ime");
+    } else {
+      deleteUser(selectedUser[0]._id).then((data) => {
+        displaySuccess(`Record ${selectedUser[0].label} deleted successfully`);
+      });
+    }
+  };
   
 
   useEffect(() => {
@@ -81,17 +118,29 @@ function People(props) {
   },[]);
   return (
     <Main>
+       <Toast ref={toast} position="top-right"></Toast>
       <div className="grid">
         <div className="col-md-4">
         <div>
           <h1>Users</h1></div>
           </div>
           </div>
+          <div className="offset-4 col-2">
+            <Button
+              className="btn btn-danger"
+              label="Delete User"
+              onClick={() => deleteSelectedUser()}
+            />
+          </div>
         <Grid 
          totalRecords={totalRecords}
          data={users}
          isLoading={loading}
-         columns={usersColumns}/>
+         columns={usersColumns}
+         dataKey={"_id"}
+         onSelectionChange={onselectionchange}
+         selecteditems={selectedUser}
+         />
 
     </Main>
   )

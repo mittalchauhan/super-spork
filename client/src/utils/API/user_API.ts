@@ -1,3 +1,4 @@
+import { DeleteUser } from "../../redux/users/types";
 import { API } from "./API";
 
 export type UserRoles = "Administrator" | "Client" | "Employee";
@@ -61,6 +62,15 @@ export const getUsers = async (): Promise<GetUsers> => {
     return data;
   } catch (err) {
     console.error(err);
+    return err;
+  }
+};
+
+export const deleteUser= async (id: string): Promise<DeleteUser> => {
+  try {
+    const { data } = await API.delete<any>(`/users/${id}`);
+    return data;
+  } catch (err) {
     return err;
   }
 };

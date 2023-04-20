@@ -124,7 +124,9 @@ import { getUsers } from '../utils/API/user_API';
 //   );
 // }
 export default function Grid(props) {
-    const { columns, data, total, isLoading } = props;
+    const { columns, data, total, isLoading, dataKey = "_id",
+    onSelectionChange = () => {},
+    selecteditems = [],} = props;
 
     const dateTemplate = (rowData, column) => {
       return new Date(rowData["createdAt"]).toLocaleDateString();
@@ -140,7 +142,12 @@ export default function Grid(props) {
     totalRecords={total}
     paginator
     loading={isLoading}
+    selection={selecteditems}
+      onSelectionChange={(e) => onSelectionChange(e)}
+      dataKey={dataKey}
   >
+    <Column selectionMode="multiple" headerStyle={{ width: "3rem" }}></Column>
+
     {columns.map(({ field, header, type }) => {
       return type === "date" ? (
         <Column field={field} body={dateTemplate} header={header} />
