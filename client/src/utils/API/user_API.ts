@@ -66,9 +66,9 @@ export const getUsers = async (): Promise<GetUsers> => {
   }
 };
 
-export const deleteUser= async (id: string): Promise<DeleteUser> => {
+export const deleteUser = async (id: string): Promise<DeleteUser> => {
   try {
-    const { data } = await API.delete<any>(`/users/${id}`);
+    const { data } = await API.delete<any>(`/user/${id}`);
     return data;
   } catch (err) {
     return err;

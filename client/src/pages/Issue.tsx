@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { Button } from "primereact/button";
 
-import Grid from "../components/Issue/Grid";
+import Grid from "../components/shared/Grid";
 import Main from "../components/Main/Main";
 
 import CreateIssueModal from "../components/Issue/CreateModal";
@@ -49,6 +49,14 @@ function Issue(props) {
       life: 3000,
     });
   };
+  const displayError = (message) => {
+    toast.current.show({
+      severity: "error",
+      summary: "Error message",
+      detail: message,
+      life: 3000,
+    });
+  };
   const deleteSelectedIssue = useCallback((selectedIssue) => {
     if (selectedIssue.length === 0) {
       displayWarning("No Issue Selected");
@@ -57,14 +65,17 @@ function Issue(props) {
     } else {
       deleteIssue(selectedIssue[0]._id).then((data) => {
         setReload(true);
-        displaySuccess(
-          `Record ${selectedIssue[0].summary} deleted successfully`
-        );
+        if (data.success === true) {
+          displaySuccess(
+            `Record ${selectedIssue[0].summary} deleted successfully`
+          );
+        } else {
+          displayError(`Error occured ${JSON.stringify(data)}`);
+        }
+        setTimeout(() => {
+          setReload(false);
+        }, 0);
       });
-
-      setTimeout(() => {
-        setReload(false);
-      }, 0);
     }
   }, []);
 
