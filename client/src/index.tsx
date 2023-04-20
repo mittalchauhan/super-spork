@@ -4,12 +4,15 @@ import "./index.css";
 import "semantic-ui-css/semantic.min.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
+//theme
+import "primereact/resources/themes/lara-light-indigo/theme.css";
+
+//core
+import "primereact/resources/primereact.min.css";
 
 ReactDOM.render(
   <React.StrictMode>
-   
     <App />
-    
   </React.StrictMode>,
   document.getElementById("app-mount")
 );
