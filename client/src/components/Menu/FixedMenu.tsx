@@ -84,13 +84,7 @@ const FixedMenu: React.FC<FixedMenuProps> = (props) => {
         >
           People
         </Menu.Item>
-        <Menu.Item
-          as={Link}
-          to={routes["PEOPLE"]}
-          active={pathname === routes["PEOPLE"]}
-        >
-          People
-        </Menu.Item>
+        
         <Menu.Item
           as={Link}
           to={routes["ISSUE"]}
