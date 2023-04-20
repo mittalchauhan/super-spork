@@ -46,9 +46,10 @@ export const getIssue = async (id: string): Promise<GetIssue> => {
 };
 
 export interface GetIssues {
-  success: boolean;
+  success?: boolean;
   data: Issue[];
-  error: string;
+  totalRecords: number;
+  error?: string;
 }
 export const getIssues = async (): Promise<GetIssues> => {
   try {

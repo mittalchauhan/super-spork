@@ -84,15 +84,29 @@ const FixedMenu: React.FC<FixedMenuProps> = (props) => {
         >
           People
         </Menu.Item>
+        <Menu.Item
+          as={Link}
+          to={routes["PEOPLE"]}
+          active={pathname === routes["PEOPLE"]}
+        >
+          People
+        </Menu.Item>
+        <Menu.Item
+          as={Link}
+          to={routes["ISSUE"]}
+          active={pathname === routes["ISSUE"]}
+        >
+          Issue
+        </Menu.Item>
 
        
-        <Button
+        {/* <Button
           color="blue"
           size="medium"
           onClick={() => setIssueOpen(!isIssueOpen)}
         >
           Create
-        </Button>
+        </Button> */}
 
         <Menu.Menu position="right">
           <Dropdown item text={currentUser?.firstname}>

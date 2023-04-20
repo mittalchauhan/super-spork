@@ -7,10 +7,11 @@ import Bar1 from "../components/Barchart";
 import Pie1 from "../components/Piechart";
 import Line1 from "../components/Linechart";
 
+
 const Dashboards = () => {
   return (
     < >
-    <>
+    <Main>
       <div className="dashboard">
         <div className="dashboard_row1">
           <Box m="20px">
@@ -54,7 +55,7 @@ const Dashboards = () => {
           <Line1 />
         </Box>
       </div>
-    </>
+    </Main>
     </>
   );
 };

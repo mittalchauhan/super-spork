@@ -82,7 +82,14 @@ const getIssueById = async (req, res) => {
 
 const getIssues = async (req, res) => {
   try {
-    const issues = await Issue.find({}).sort({ index: "asc" });
+    // const issues = await Issue.find({}).sort({ index: "asc" });
+    const issues = await Issue.find({})
+      .populate({ path: "projectId", model: "projects", select: "name" })
+      .populate("creatorId", "firstname")
+      .populate("assigneeId", "name")
+      .populate("issueTypeId", "label")
+      .populate("priorityId", "label")
+      .populate("statusId", "label");
 
     if (!issues.length) {
       return res
@@ -90,7 +97,9 @@ const getIssues = async (req, res) => {
         .json({ success: false, error: `Issues not found` });
     }
 
-    return res.status(200).json({ success: true, data: issues });
+    return res
+      .status(200)
+      .json({ success: true, data: issues, totalRecords: issues.length });
   } catch (error) {
     return res.status(400).json({ success: false, error });
   }

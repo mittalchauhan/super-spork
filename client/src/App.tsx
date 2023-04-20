@@ -17,6 +17,7 @@ import "./index.css";
 import People from "./pages/People";
 import { getUsers, User, getUserByMail } from "./utils/API/user_API";
 import Project from "./pages/Project";
+import Issue from "./pages/Issue";
 
 const store = configureStore();
 
@@ -70,7 +71,7 @@ const App = () => {
             path={routes["YOUR_WORK"]}
             element={
               <PrivateRoute>
-                <YourWork />
+                {/* <YourWork /> */}
               </PrivateRoute>
             }
           />
@@ -79,6 +80,14 @@ const App = () => {
             element={
               <PrivateRoute>
                 <Projects />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path={routes["ISSUE"]}
+            element={
+              <PrivateRoute>
+                <Issue />
               </PrivateRoute>
             }
           />
