@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Dropdown, Menu, Button } from "semantic-ui-react";
 import { routes } from "../../utils/routes";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import CreateProjectModal from "../Project/CreateModal";
 import CreateIssueModal from "../Issue/CreateModal";
 import { connect } from "react-redux";
@@ -22,12 +22,16 @@ const FixedMenu: React.FC<FixedMenuProps> = (props) => {
   const [isPeopleOpen, setPeopleOpen] = useState(false);
   const [isProjectOpen, setProjectOpen] = useState(false);
   const [isIssueOpen, setIssueOpen] = useState(false);
+  const navigate = useNavigate();
 
   return (
     <>
       <CreateProjectModal
         isOpen={isProjectOpen}
-        handleClose={() => setProjectOpen(false)}
+        handleClose={() => {
+          setProjectOpen(false);
+          navigate("/projects"); // replace 'MyRoute' with the name of your desired route
+        }}
         currentUser={currentUser}
       />
 
