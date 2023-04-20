@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { Button } from "primereact/button";
 
 import Grid from "../components/Issue/Grid";
@@ -18,6 +18,8 @@ function Issue(props) {
   const [issues, setIssues] = useState([]);
   const [loading, setLoading] = useState(false);
   const [selectedIssue, setSelectedIssue] = useState([]);
+  const [reload, setReload] = useState(false);
+
   const issueColumns = [
     { field: "description", header: "Description", type: "string" },
     { field: "projectId.name", header: "Project", type: "string" },
@@ -47,26 +49,33 @@ function Issue(props) {
       life: 3000,
     });
   };
-  const deleteSelectedIssue = () => {
+  const deleteSelectedIssue = useCallback((selectedIssue) => {
     if (selectedIssue.length === 0) {
       displayWarning("No Issue Selected");
-    }
-    if (selectedIssue.length > 1) {
+    } else if (selectedIssue.length > 1) {
       displayWarning("only one  Issue can be deleted at a ime");
     } else {
       deleteIssue(selectedIssue[0]._id).then((data) => {
-        displaySuccess(`Record ${selectedIssue[0].label} deleted successfully`);
+        setReload(true);
+        displaySuccess(
+          `Record ${selectedIssue[0].summary} deleted successfully`
+        );
       });
+
+      setTimeout(() => {
+        setReload(false);
+      }, 0);
     }
-  };
+  }, []);
 
   useEffect(() => {
     getIssues().then((data) => {
       setTotalRecords(data.totalRecords);
       setIssues(data.data);
       setLoading(false);
+      setSelectedIssue([]);
     });
-  }, []);
+  }, [isIssueOpen, reload]);
 
   return (
     <Main>
@@ -87,7 +96,7 @@ function Issue(props) {
             <Button
               className="btn btn-danger"
               label="Delete issue"
-              onClick={() => deleteSelectedIssue()}
+              onClick={() => deleteSelectedIssue(selectedIssue)}
             />
           </div>
           <div className=" col-2">
