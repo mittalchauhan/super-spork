@@ -53,6 +53,7 @@ export interface GetUsers {
   success: boolean;
   error?: string;
   data: User[];
+  totalRecords: number;
 }
 export const getUsers = async (): Promise<GetUsers> => {
   try {

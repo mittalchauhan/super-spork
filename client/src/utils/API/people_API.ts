@@ -1,4 +1,5 @@
 import { API } from "./API";
+import { User } from "./user_API";
 
 export interface Project {
   Firstname: string;
@@ -29,6 +30,18 @@ export const createProject = async (
   }
 };
 
+// export interface GetUsers {
+//   success: boolean;
+//   data: User;
+// }
+// export const getIssue = async (id: string): Promise<GetIssue> => {
+//   try {
+//     const { data } = await API.get<any>(`/issue/${id}`);
+//     return data;
+//   } catch (err) {
+//     return err;
+//   }
+// };
 export interface GetProject {
   success: boolean;
   data: Project;

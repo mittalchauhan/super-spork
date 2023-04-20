@@ -8,7 +8,7 @@ import CreateIssueModal from "../components/Issue/CreateModal";
 import { getIssues } from "../utils/API/issue_API";
 
 function Issue(props) {
-  const { currentUser, logoutUser } = props;
+  const { currentUser } = props;
   const [isIssueOpen, setIssueOpen] = useState(false);
   const [totalRecords, setTotalRecords] = useState(0);
   const [issues, setIssues] = useState([]);
