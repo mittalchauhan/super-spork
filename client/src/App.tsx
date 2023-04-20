@@ -18,6 +18,7 @@ import People from "./pages/People";
 import { getUsers, User, getUserByMail } from "./utils/API/user_API";
 import Project from "./pages/Project";
 import Issue from "./pages/Issue";
+import MyWork from "./pages/MyWork";
 
 const store = configureStore();
 
@@ -72,6 +73,7 @@ const App = () => {
             element={
               <PrivateRoute>
                 {/* <YourWork /> */}
+                <MyWork />
               </PrivateRoute>
             }
           />
