@@ -5,7 +5,7 @@ import ProjectsTable from "../components/Project/ProjectsTable";
 const Projects = () => {
   return (
     <Main>
-      <ProjectsTable />
+      <ProjectsTable/>
     </Main>
   );
 };
