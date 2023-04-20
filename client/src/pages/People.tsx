@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import Main from "../components/Main/Main";
 // import Grid from '../People/gridq'
 // import Datagrid from "../components/Datagrid";
@@ -52,8 +52,10 @@ function People(props) {
   const [loading, setLoading] = useState(false);
   const [totalRecords, setTotalRecords] = useState(0);
   const [users , setusers] = useState(null);
+  const [isUserOpen, setUserOpen] = useState(false);
   const [selectAll, setSelectAll] = useState(false);
   const [selectedissues, setSelectedissues] = useState(null);
+  const [reload, setReload] = useState(false);
   const [lazyState, setlazyState] = useState({
       first: 0,
       rows: 10,
@@ -94,18 +96,24 @@ function People(props) {
     });
   };
 
-  const deleteSelectedUser = () => {
+  const deleteSelectedUser = useCallback((selectedUser) => {
     if (selectedUser.length === 0) {
       displayWarning("No Issue Selected");
-    }
-    if (selectedUser.length > 1) {
+    } else if (selectedUser.length > 1) {
       displayWarning("only one  Issue can be deleted at a ime");
     } else {
       deleteUser(selectedUser[0]._id).then((data) => {
-        displaySuccess(`Record ${selectedUser[0].label} deleted successfully`);
+        setReload(true);
+        displaySuccess(
+          `Record ${selectedUser[0].summary} deleted successfully`
+        );
       });
+
+      setTimeout(() => {
+        setReload(false);
+      }, 0);
     }
-  };
+  }, []);
   
 
   useEffect(() => {
@@ -113,9 +121,11 @@ function People(props) {
               setTotalRecords(data.totalRecords);
               setusers(data.data);
               setLoading(false);
+              setSelectedUser([]);
           });
     
-  },[]);
+  },[isUserOpen, reload]);
+
   return (
     <Main>
        <Toast ref={toast} position="top-right"></Toast>
@@ -129,7 +139,7 @@ function People(props) {
             <Button
               className="btn btn-danger"
               label="Delete User"
-              onClick={() => deleteSelectedUser()}
+              onClick={() => deleteSelectedUser(selectedUser)}
             />
           </div>
         <Grid 
